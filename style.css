@@ -5,22 +5,44 @@ body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    font-family: "Times New Roman", Times, serif;
-    display: flex; /* Set up flexbox for sidebar + content */
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 15px; /* Slightly reduced from normal (16px) */
+    display: flex;
     min-height: 100vh;
+    padding-top: 80px; /* space for fixed header */
+}
+
+/* SITE HEADER STYLES */
+.site-header {
+    width: 100vw;
+    background: #2d3142;
+    color: #f2e9e4;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    padding: 28px 0 18px 0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    user-select: none;
 }
 
 /* SIDEBAR STYLES */
 .sidebar {
-    background-color: #E67E22; /* Orange sidebar */
+    background-color: #E67E22;
     padding: 20px 0;
     width: 180px;
     min-width: 180px;
     max-width: 180px;
-    height: 100vh;
+    height: calc(100vh - 80px); /* Sidebar fits below header */
     position: fixed;
     left: 0;
-    top: 0;
+    top: 80px; /* below the header */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -40,7 +62,7 @@ body {
 
 .sidebar a:hover {
     background-color: #444;
-    width: 100%; /* keep width consistent on hover */
+    width: 100%;
 }
 
 /* MAIN CONTENT AREA */
@@ -50,12 +72,20 @@ body {
     max-width: calc(100vw - 180px);
     box-sizing: border-box;
     padding: 32px;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 15px;
 }
 
 /* RESPONSIVENESS: STACK SIDEBAR ON TOP FOR SMALL SCREENS */
 @media (max-width: 600px) {
     body {
         flex-direction: column;
+        padding-top: 70px; /* adapt to smaller header */
+    }
+    .site-header {
+        font-size: 2rem;
+        padding: 18px 0 10px 0;
+        position: fixed;
     }
     .sidebar {
         position: static;
@@ -66,6 +96,8 @@ body {
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
+        top: 0;
+        left: 0;
     }
     .sidebar a {
         padding: 12px 10px;
